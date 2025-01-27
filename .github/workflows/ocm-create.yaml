@@ -35,7 +35,7 @@ jobs:
         uses: open-component-model/ocm-action@main
         with:
           action: push_ctf
-          comprepo_url: ocmtest.common.repositories.cloud.sap
+          comprepo_url: ocmtest.common.repositories.cloud.sap/d032990
           force_push: true
           comprepo_user: ${{ secrets.OCM_JFROG_USER }}
           comprepo_password: ${{ secrets.OCM_JFROG_KEY }}
