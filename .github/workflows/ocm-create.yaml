@@ -29,7 +29,7 @@ jobs:
           templater: subst
           var_values: |
             PODINFO_COMP_VERSION: ${{ env.PODINFO_COMP_VERSION}}
-            PODINFO_COMP_VERSION: ${{ env.PODINFO_CHART_VERSION}}
+            PODINFO_CHART_VERSION: ${{ env.PODINFO_CHART_VERSION}}
             PODINFO_IMAGE_VERSION: ${{ env.PODINFO_IMAGE_VERSION}}
       - name: transfer to OCI Repo
         uses: open-component-model/ocm-action@main
