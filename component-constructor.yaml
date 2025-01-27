@@ -3,7 +3,7 @@
 components:
 # podinfo component
 - name:  github.com/morrison/ocm-action-test/podinfo
-#  version: ${PODINFO_COMP_VERSION} (( values.ISTIO_VERSION ))
+#  version: ${PODINFO_COMP_VERSION}
   version: (( values.PODINFO_COMP_VERSION ))
   provider:
     name: ocm.software
