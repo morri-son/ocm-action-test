@@ -7,7 +7,7 @@ components:
   provider:
     name: ocm.software
   resources:
-  # Helm chart in OCI registry
+  # Helm chart
   - name: podinfo-chart
     type: helmChart
     version: ${PODINFO_CHART_VERSION}
