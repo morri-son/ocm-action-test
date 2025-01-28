@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'PODINFO_*_VERSION'
 jobs:
   ocm:
     runs-on: ubuntu-latest
