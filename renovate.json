@@ -1,0 +1,36 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "customDatasources": {
+    "oci-artifact": {
+      "defaultRegistryUrlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{repository}}/manifests/{{tag}}",
+      "transformResponse": {
+        "jsonPath": "$.annotations[\"software.ocm.componentversion\"]",
+        "transformationScript": "const [name, version] = val.split(':'); return { releases: [{ version }] };"
+      }
+    }
+  },
+  "regexManagers": [
+    {
+      "fileMatch": ["^component\\.yaml$"],
+      "matchStrings": [
+        "^\\s*-\\s*componentName:\\s*(?<depName>[^\\n]+)\\s*\\n\\s*name:[^\\n]+\\s*\\n\\s*version:\\s*\"(?<currentValue>v?\\d+\\.\\d+(?:\\.\\d+)?)\""
+      ],
+      "datasourceTemplate": "custom.oci-artifact",
+      "versioningTemplate": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)(?:\\.(?<patch>\\d+))?$"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["custom.oci-artifact"],
+      "registryUrls": ["ocmtest.common.repositories.cloud.sap"]
+    }
+  ],
+  "enabledManagers": ["regex"],
+  "logLevel": "debug",
+  "logContext": true,
+  "debugConfig": true,
+  "printConfig": true,
+  "constraints": {
+    "node": ">=16.0.0"
+  }
+}

@@ -23,10 +23,10 @@ jobs:
         uses: open-component-model/ocm-action@main
         with:
           action: add_component
-          components: component-constructor.yaml
+          components: component.yaml
           directory: .ocm
           version: 0.0.1
-          templater: spiff
+          templater: subst
           var_values: |
             PODINFO_COMP_VERSION: ${{ env.PODINFO_COMP_VERSION}}
             PODINFO_CHART_VERSION: ${{ env.PODINFO_CHART_VERSION}}
