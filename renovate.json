@@ -3,9 +3,10 @@
   "customDatasources": {
     "oci-artifact": {
       "defaultRegistryUrlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{repository}}/manifests/{{tag}}",
-      "transformResponse": {
+      "extractVersion": {
         "jsonPath": "$.annotations[\"software.ocm.componentversion\"]",
-        "transformationScript": "const [name, version] = val.split(':'); return { releases: [{ version }] };"
+        "versioning": "regex",
+        "regex": "^(?<name>[^:]+):(?<version>\\d+\\.\\d+\\.\\d+)$"
       }
     }
   },
@@ -26,10 +27,6 @@
     }
   ],
   "enabledManagers": ["regex"],
-  "logLevel": "debug",
-  "logContext": true,
-  "debugConfig": true,
-  "printConfig": true,
   "constraints": {
     "node": ">=16.0.0"
   }
