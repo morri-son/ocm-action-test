@@ -3,9 +3,11 @@
   "customDatasources": {
     "oci-artifact": {
       "defaultRegistryUrlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{repository}}/manifests/{{tag}}",
-      "transformTemplates": {
-        "version": "{{#if (split (get $.annotations \"software.ocm.componentversion\") \":\")}}{{get (split (get $.annotations \"software.ocm.componentversion\") \":\") 1}}{{/if}}"
-      }
+      "transformTemplates": [
+        "$.annotations[\"software.ocm.componentversion\"]",
+        "split($, \":\")",
+        "{ \"releases\": [{ \"version\": $[1] }] }"
+      ]
     }
   },
   "regexManagers": [
