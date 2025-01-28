@@ -3,10 +3,9 @@
   "customDatasources": {
     "oci-artifact": {
       "defaultRegistryUrlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{repository}}/manifests/{{tag}}",
-      "extractVersion": {
+      "transform": {
         "jsonPath": "$.annotations[\"software.ocm.componentversion\"]",
-        "versioning": "regex",
-        "regex": "^(?<name>[^:]+):(?<version>\\d+\\.\\d+\\.\\d+)$"
+        "script": "const [name, version] = value.split(':'); return { name, releases: [{ version }] };"
       }
     }
   },
