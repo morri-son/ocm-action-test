@@ -2,6 +2,21 @@
   "extends": [
     "config:base"
   ],
+  "customManagers": {
+    "ocmComponentManager": {
+      "fileMatch": ["^component\\.yaml$"],
+      "extractPackageName": {
+        "regex": "componentName: (.+)",
+        "replace": "$1"
+      },
+      "extractVersion": {
+        "regex": "version: \"([^\"]+)\"",
+        "replace": "$1"
+      },
+      "datasource": "ocmComponents",
+      "versioning": "semver"
+    }
+  },
   "datasources": {
     "ocmComponents": {
       "fileMatch": ["^component\\.yaml$"],
@@ -16,9 +31,10 @@
   },
   "packageRules": [
     {
-      "matchDatasources": ["ocmComponents"],
+      "matchManagers": ["ocmComponentManager"],
       "matchPackageNames": ["*"],
-      "enabled": true
+      "enabled": true,
+      "updateTypes": ["major", "minor", "patch"]
     }
   ]
 }
