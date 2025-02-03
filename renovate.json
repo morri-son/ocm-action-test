@@ -11,7 +11,7 @@
       "datasourceTemplate": "docker",
       "depNameTemplate": "{{{ depName }}}",
       "versioningTemplate": "semver",
-      "lookupNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ depName }}}",
+      "lookupNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ depName }}}:{{{ currentValue }}}",
       "extractVersionTemplate": "{{{ currentValue }}}"
     }
   ]
