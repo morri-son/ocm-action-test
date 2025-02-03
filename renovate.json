@@ -14,7 +14,7 @@
     {
       "fileMatch": ["^component\\.yaml$"],
       "matchStrings": [
-        "componentReferences:\\s*\\n(?:\\s*-\\s*componentName:\\s*(?P<depName>[^\\n]+)\\s*\\n\\s*name:[^\\n]+\\s*\\n\\s*version:\\s*\"(?P<currentValue>v?\\d+\\.\\d+(?:\\.\\d+)?)\"\\s*\\n?)*"
+        "componentReferences:\\s*\\n(?:\\s*-\\s*componentName:\\s*(?<depName>[^\\n]+)\\s*\\n\\s*name:[^\\n]+\\s*\\n\\s*version:\\s*\"(?<currentValue>v?\\d+\\.\\d+(?:\\.\\d+)?)\"\\s*\\n?)*"
       ],
       "datasourceTemplate": "custom.oci-artifact",
       "versioningTemplate": "regex:^v?(?P<major>\\d+)\\.(?P<minor>\\d+)(?:\\.(?P<patch>\\d+))?$"
