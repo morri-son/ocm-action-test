@@ -8,22 +8,19 @@
       "matchStrings": [
         "componentName: (?<componentName>.+)\\s+name: (?<name>.+)\\s+version: \"(?<currentValue>[^\"]+)\""
       ],
-      "datasourceTemplate": "ocmComponents",
+      "datasourceTemplate": "docker",
       "depNameTemplate": "{{{ componentName }}}",
-      "versioning": "semver",
+      "versioningTemplate": "semver",
+      "lookupNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ componentName }}}",
       "extractVersionTemplate": "{{{ currentValue }}}"
     }
   ],
-  "datasources": {
-    "ocmComponents": {
-      "fileMatch": ["^component\\.yaml$"],
-      "extractVersion": {
-        "regex": "componentName: (.+)",
-        "replace": "$1"
-      },
-      "urlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{{componentName}}}/tags/list",
-      "responseType": "json",
-      "versioning": "semver"
+  "hostRules": [
+    {
+      "hostType": "docker",
+      "hostName": "ocmtest.common.repositories.cloud.sap",
+      "username": "your-username",
+      "password": "your-password"
     }
-  }
+  ]
 }
