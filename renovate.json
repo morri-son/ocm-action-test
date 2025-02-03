@@ -6,12 +6,12 @@
     {
       "fileMatch": ["^component\\.yaml$"],
       "matchStrings": [
-        "componentName: (?<componentName>.+)\\s+name: (?<name>.+)\\s+version: \"(?<currentValue>[^\"]+)\""
+        "componentReferences:\\s*\\n(?:\\s*-\\s*componentName:\\s*(?<depName>[^\\n]+)\\s*\\n\\s*name:[^\\n]+\\s*\\n\\s*version:\\s*\"(?<currentValue>v?\\d+\\.\\d+(?:\\.\\d+)?)\"\\s*\\n?)*"
       ],
       "datasourceTemplate": "docker",
-      "depNameTemplate": "{{{ componentName }}}",
+      "depNameTemplate": "{{{ depName }}}",
       "versioningTemplate": "semver",
-      "lookupNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ componentName }}}",
+      "lookupNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ depName }}}",
       "extractVersionTemplate": "{{{ currentValue }}}"
     }
   ]
