@@ -1,17 +1,20 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["^component\\.yaml$"],
+      "customType": "regex",
+      "fileMatch": [
+        "^component\\.yaml$"
+      ],
       "matchStrings": [
         "componentReferences:\\s*\\n(?:\\s*-\\s*componentName:\\s*(?<depName>[^\\n]+)\\s*\\n\\s*name:[^\\n]+\\s*\\n\\s*version:\\s*\"(?<currentValue>v?\\d+\\.\\d+(?:\\.\\d+)?)\"\\s*\\n?)*"
       ],
       "datasourceTemplate": "oci-artifact",
       "depNameTemplate": "{{{ depName }}}",
       "versioningTemplate": "semver",
-      "lookupNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ depName }}}",
+      "packageNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ depName }}}",
       "extractVersionTemplate": "{{{ currentValue }}}"
     }
   ],
