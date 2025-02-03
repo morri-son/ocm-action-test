@@ -29,6 +29,6 @@
   "enabledManagers": ["regex"],
   "printConfig": true,
   "constraints": {
-    "node": ">=16.0.0"
+    "node": ">=16.0.0"    
   }
 }
