@@ -8,11 +8,19 @@
       "matchStrings": [
         "componentReferences:\\s*\\n(?:\\s*-\\s*componentName:\\s*(?<depName>[^\\n]+)\\s*\\n\\s*name:[^\\n]+\\s*\\n\\s*version:\\s*\"(?<currentValue>v?\\d+\\.\\d+(?:\\.\\d+)?)\"\\s*\\n?)*"
       ],
-      "datasourceTemplate": "docker",
+      "datasourceTemplate": "oci-artifact",
       "depNameTemplate": "{{{ depName }}}",
       "versioningTemplate": "semver",
-      "lookupNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ depName }}}:{{{ currentValue }}}",
+      "lookupNameTemplate": "ocmtest.common.repositories.cloud.sap/d032990/component-descriptors/{{{ depName }}}",
       "extractVersionTemplate": "{{{ currentValue }}}"
     }
-  ]
+  ],
+  "customDatasources": {
+    "oci-artifact": {
+      "defaultRegistryUrlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{{ depName }}}/tags/list",
+      "transformTemplates": {
+        "versions": "{{#each tags}}{{this}}{{#unless @last}},{{/unless}}{{/each}}"
+      }
+    }
+  }
 }
