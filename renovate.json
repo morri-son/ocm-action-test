@@ -19,8 +19,7 @@
     "oci-artifact": {
       "defaultRegistryUrlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{{ depName }}}/tags/list",
       "transformTemplates": [
-        "versions",
-        "{{#each tags}}{{this}}{{#unless @last}},{{/unless}}{{/each}}"
+        "{ \"releases\": [ {{#each tags}} { \"version\": \"{{this}}\" }{{#unless @last}},{{/unless}}{{/each}} ] }"
       ]
     }
   }
