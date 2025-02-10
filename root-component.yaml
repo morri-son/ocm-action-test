@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://ocm.software/schemas/configuration-schema.yaml
 components:
 # podinfo component
-- name:  github.com/morrison/ocm-test-dep/root-component-2
+- name:  github.com/morrison/ocm-test-dep/root-component-1
   version: ${ROOT_COMP_VERSION}
   provider:
     name: ocm.software
@@ -27,6 +27,9 @@ components:
       name: dep-component-1
       version: 1.0.0
     - componentName: github.com/morrison/ocm-test-dep/dep-component-2
+      name: dep-component-2
+      version: 1.0.0
+    - componentName: github.com/morrison/ocm-test-dep/dep-component-3
       name: dep-component-2
       version: 1.0.0
     
