@@ -8,7 +8,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^root-component\\.yaml$"],
+      "fileMatch": ["^root-component**\\.yaml$"],
       "datasourceTemplate": "custom.oci-artifact",
       "matchStrings": [
         "-\\s*componentName:\\s*(?<depName>[^\\n]+)\\s*\\n\\s*name:\\s*[^\\n]+\\s*\\n\\s*version:\\s*(?<currentValue>[^\\n]+)"
