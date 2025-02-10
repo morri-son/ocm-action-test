@@ -1,0 +1,11 @@
+# specify a schema to validate the configuration and get auto-completion in your editor
+# yaml-language-server: $schema=https://ocm.software/schemas/configuration-schema.yaml
+components:
+# podinfo component
+- name:  github.com/morrison/ocm-test-dep/dep-component-3
+  version: 1.0.0
+  provider:
+    name: ocm.software
+
+    
+  

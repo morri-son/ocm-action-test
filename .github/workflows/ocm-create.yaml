@@ -1,13 +1,16 @@
-name: Build Test OCM Component
+name: Build OCM Root Component
 on:
   push:
     branches:
       - main
     paths:
-      - 'PODINFO_*_VERSION'
+      - '**_VERSION'
+      - 'root-component.yaml'
+  workflow_dispatch:
+    
 jobs:
   ocm:
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted, solinas ]
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -15,22 +18,22 @@ jobs:
         uses: open-component-model/ocm-setup-action@main
       - name: Get Podinfo Version
         run: |
-          PODINFO_COMP_VERSION=`cat ./PODINFO_COMP_VERSION`
+          ROOT_COMP_VERSION=`cat ./ROOT_COMP_VERSION`
           PODINFO_CHART_VERSION=`cat ./PODINFO_CHART_VERSION`
           PODINFO_IMAGE_VERSION=`cat ./PODINFO_IMAGE_VERSION`
-          echo "PODINFO_COMP_VERSION=$PODINFO_COMP_VERSION" >> $GITHUB_ENV
+          echo "ROOT_COMP_VERSION=$ROOT_COMP_VERSION" >> $GITHUB_ENV
           echo "PODINFO_CHART_VERSION=$PODINFO_CHART_VERSION" >> $GITHUB_ENV
           echo "PODINFO_IMAGE_VERSION=$PODINFO_IMAGE_VERSION" >> $GITHUB_ENV
       - name: create OCM CTF Archive
         uses: open-component-model/ocm-action@main
         with:
           action: add_component
-          components: component.yaml
+          components: root-component.yaml
           directory: .ocm
           version: 0.0.1
           templater: subst
           var_values: |
-            PODINFO_COMP_VERSION: ${{ env.PODINFO_COMP_VERSION}}
+            ROOT_COMP_VERSION: ${{ env.ROOT_COMP_VERSION}}
             PODINFO_CHART_VERSION: ${{ env.PODINFO_CHART_VERSION}}
             PODINFO_IMAGE_VERSION: ${{ env.PODINFO_IMAGE_VERSION}}
       - name: transfer to OCI Repo

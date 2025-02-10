@@ -1,25 +1,40 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended", ":dependencyDashboard", "group:allNonMajor"
+  ],
+  "ignorePaths": [
+    ".github/workflows/**"
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^component\\.yaml$"],
-      "datasourceTemplate": "oci-artifact",
+      "fileMatch": ["^root-component\\.yaml$"],
+      "datasourceTemplate": "custom.oci-artifact",
       "matchStrings": [
-        "componentReferences:\\s*\\n(?:\\s*-\\s*componentName:\\s*(?<depName>[^\\n]+)\\s*\\n\\s*name:[^\\n]+\\s*\\n\\s*version:\\s*\"(?<currentValue>v?\\d+\\.\\d+(?:\\.\\d+)?)\"\\s*\\n?)*"
+        "-\\s*componentName:\\s*(?<depName>[^\\n]+)\\s*\\n\\s*name:\\s*[^\\n]+\\s*\\n\\s*version:\\s*(?<currentValue>[^\\n]+)"
       ],
-      "versioningTemplate": "semver",
-      "depNameTemplate": "{{ depName }}"
+      "versioningTemplate": "semver"
     }
   ],
   "customDatasources": {
     "oci-artifact": {
-      "defaultRegistryUrlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{{ depName }}}/tags/list",
+      "defaultRegistryUrlTemplate": "https://ocmtest.common.repositories.cloud.sap/v2/d032990/component-descriptors/{{packageName}}/tags/list",
       "transformTemplates": [
-        "{ \"releases\": [ {{#each tags}} { \"version\": \"{{this}}\" }{{#unless @last}},{{/unless}}{{/each}} ] }"
-      ]
+        "{ \"releases\": tags.( { \"version\": $ } ) }"
+        ]
     }
-  }
+  },
+  "hostRules": [
+    { 
+      "matchHost": "https://ocmtest.common.repositories.cloud.sap",
+      "username": "d032990",
+      "password": "cmVmdGtuOjAxOjE3NzA0NjY2MTM6YVl3alZ1UGhlVXlWcmU5Tlc1eGVIY1d4elRn"
+    }
+  ],
+  "logLevelRemap": [
+    {
+      "matchMessage": "/^Custom manager fetcher/",
+      "newLogLevel": "info"
+    }
+  ]
 }

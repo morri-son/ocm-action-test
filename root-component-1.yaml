@@ -2,12 +2,12 @@
 # yaml-language-server: $schema=https://ocm.software/schemas/configuration-schema.yaml
 components:
 # podinfo component
-- name:  github.com/morrison/ocm-action-test/podinfo
-  version: ${PODINFO_COMP_VERSION}
+- name:  github.com/morrison/ocm-test-dep/root-component-2
+  version: ${ROOT_COMP_VERSION}
   provider:
     name: ocm.software
   resources:
-  # Helm chart x
+  # Helm chart
   - name: podinfo-chart
     type: helmChart
     version: ${PODINFO_CHART_VERSION}
@@ -21,8 +21,12 @@ components:
     access:
       type: ociArtifact
       imageReference: ghcr.io/stefanprodan/podinfo:${PODINFO_IMAGE_VERSION}
+  # Dependendant components
   componentReferences:
-    - componentName: github.com/morrison/ocm-action-test/dep-component
-      name: dep-component
-      version: "1.0.0"
+    - componentName: github.com/morrison/ocm-test-dep/dep-component-1
+      name: dep-component-1
+      version: 1.0.0
+    - componentName: github.com/morrison/ocm-test-dep/dep-component-2
+      name: dep-component-2
+      version: 1.0.0
     
