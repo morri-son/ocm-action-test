@@ -23,18 +23,5 @@
         "{ \"releases\": tags.( { \"version\": $ } ) }"
         ]
     }
-  },
-  "hostRules": [
-    { 
-      "matchHost": "https://ocmtest.common.repositories.cloud.sap",
-      "username": "d032990",
-      "password": "cmVmdGtuOjAxOjE3NzA0NjY2MTM6YVl3alZ1UGhlVXlWcmU5Tlc1eGVIY1d4elRn"
-    }
-  ],
-  "logLevelRemap": [
-    {
-      "matchMessage": "/^Custom manager fetcher/",
-      "newLogLevel": "info"
-    }
-  ]
+  }
 }
