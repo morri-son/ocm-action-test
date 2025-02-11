@@ -25,10 +25,10 @@ components:
   componentReferences:
     - componentName: github.com/morrison/ocm-test-dep/dep-component-1
       name: dep-component-1
-      version: 1.0.0
+      version: 1.0.1
     - componentName: github.com/morrison/ocm-test-dep/dep-component-2
       name: dep-component-2
-      version: 1.0.0
+      version: 1.0.1
     - componentName: github.com/morrison/ocm-test-dep/dep-component-3
       name: dep-component-3
       version: 1.0.0
